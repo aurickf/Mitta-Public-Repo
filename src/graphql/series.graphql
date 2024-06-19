@@ -1,0 +1,232 @@
+query AllSeries {
+  allSeries {
+    _id
+    isPublished
+    title
+    description
+    regularClass {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+    }
+    specialEvent {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+    }
+  }
+}
+
+query AllPublishedSeries {
+  allPublishedSeries {
+    _id
+    isPublished
+    title
+    description
+    regularClass {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+    }
+    specialEvent {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+    }
+  }
+}
+
+query Series($_id: ObjectId!) {
+  series(_id: $_id) {
+    _id
+    isPublished
+    title
+    description
+    regularClass {
+      __typename
+      _id
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+      instructors {
+        name
+      }
+    }
+    specialEvent {
+      __typename
+      _id
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+      instructors {
+        name
+      }
+    }
+  }
+}
+
+query SeriesTitle($title: String!) {
+  seriesTitle(title: $title) {
+    _id
+    isPublished
+    title
+    description
+    regularClass {
+      __typename
+      _id
+      details {
+        title
+        description
+        level {
+          description
+        }
+        tags
+      }
+      schedule {
+        date
+        duration
+        isAllDay
+      }
+      instructors {
+        name
+      }
+      status {
+        isVIPOnly
+      }
+      online {
+        availability
+        capacity
+        booked {
+          _id
+        }
+        bookingTimeLimit
+        cancelTimeLimit
+        cost
+      }
+      offline {
+        availability
+        capacity
+        booked {
+          _id
+        }
+        bookingTimeLimit
+        cancelTimeLimit
+        cost
+      }
+    }
+    specialEvent {
+      __typename
+      _id
+      details {
+        title
+        description
+        tags
+      }
+      schedule {
+        date
+        duration
+        isAllDay
+      }
+      instructors {
+        name
+      }
+      status {
+        isVIPOnly
+      }
+      online {
+        availability
+        capacity
+        booked {
+          _id
+        }
+        bookingTimeLimit
+        cost
+        bookedSeat
+        confirmedSeat
+        rejectedSeat
+      }
+      offline {
+        availability
+        capacity
+        booked {
+          _id
+        }
+        bookingTimeLimit
+        cost
+        bookedSeat
+        confirmedSeat
+        rejectedSeat
+      }
+    }
+  }
+}
+
+query IsSeriesTitleExist($title: String!) {
+  isSeriesTitleExist(title: $title)
+}
+
+mutation AddSeries(
+  $isPublished: Boolean!
+  $title: String!
+  $description: String
+  $regularClass: [ObjectId]!
+  $specialEvent: [ObjectId]!
+) {
+  addSeries(
+    input: {
+      isPublished: $isPublished
+      title: $title
+      description: $description
+      regularClass: $regularClass
+      specialEvent: $specialEvent
+    }
+  ) {
+    _id
+  }
+}
+
+mutation EditSeries(
+  $_id: ObjectId!
+  $isPublished: Boolean!
+  $title: String!
+  $description: String
+  $regularClass: [ObjectId]!
+  $specialEvent: [ObjectId]!
+) {
+  editSeries(
+    input: {
+      _id: $_id
+      isPublished: $isPublished
+      title: $title
+      description: $description
+      regularClass: $regularClass
+      specialEvent: $specialEvent
+    }
+  ) {
+    _id
+  }
+}
+
+mutation DeleteSeries($_id: ObjectId!) {
+  deleteSeries(_id: $_id) {
+    _id
+  }
+}

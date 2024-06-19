@@ -1,0 +1,65 @@
+fragment featureFragment on Feature {
+  isEnabled
+  featureKey
+  createdAt
+  updatedAt
+}
+
+query FeatureSeries {
+  featureSeries {
+    ...featureFragment
+  }
+}
+
+query FeatureTemplate {
+  featureTemplate {
+    ...featureFragment
+  }
+}
+
+query FeatureAnalytics {
+  featureAnalytics {
+    ...featureFragment
+  }
+}
+
+query FeatureAutoApproveMembership {
+  featureAutoApproveMembership {
+    ...featureFragment
+    by {
+      _id
+      name
+    }
+  }
+}
+
+query FeaturePageQuery {
+  featureSeries {
+    ...featureFragment
+  }
+  featureTemplate {
+    ...featureFragment
+  }
+  featureAnalytics {
+    ...featureFragment
+  }
+  featureAutoApproveMembership {
+    ...featureFragment
+    by {
+      _id
+      name
+    }
+  }
+}
+
+mutation ToggleFeature($featureKey: String!) {
+  toggleFeature(featureKey: $featureKey) {
+    ...featureFragment
+  }
+}
+
+mutation SetAutoApproverAdmin($_id: ObjectId!) {
+  setAutoApproverAdmin(_id: $_id) {
+    ...featureFragment
+  }
+}

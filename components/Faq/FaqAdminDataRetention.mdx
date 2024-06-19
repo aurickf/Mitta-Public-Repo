@@ -1,0 +1,22 @@
+export const dataRetention = {
+  inApp: 180,
+  logData: 180,
+  pendingProofOfPayment: 90,
+  approvedProofOfPayment: 90,
+};
+
+<a name="Data_Retention_Period" />
+## Data Retention Period
+
+#### Database
+
+- In-App notification - {dataRetention.inApp} days
+- Log data - {dataRetention.logData} days
+- Other documents (i.e : booking data, class data, etc) - forever
+
+#### AWS
+
+- Pending proof of payment - {dataRetention.pendingProofOfPayment} days
+- Approved proof of payment - {dataRetention.approvedProofOfPayment} days
+
+export default ({ children }) => <div>{children}</div>;

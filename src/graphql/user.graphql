@@ -1,0 +1,153 @@
+query IsUsernameAvailable($username: String!) {
+  isUsernameAvailable(username: $username)
+}
+
+query Instructors {
+  instructors {
+    _id
+    name
+    image
+    username
+  }
+}
+
+query Admins {
+  admins {
+    _id
+    name
+    username
+  }
+}
+
+query User($_id: ObjectId!) {
+  user(_id: $_id) {
+    _id
+    name
+    username
+    image
+    email
+    phone
+    role {
+      isInstructor
+      isAdmin
+    }
+    access {
+      register {
+        date
+      }
+      approval {
+        isApproved
+        date
+      }
+      ban {
+        isBanned
+        date
+        reason
+      }
+    }
+    membership {
+      isVIP
+      latest {
+        _id
+      }
+    }
+  }
+}
+
+query Users {
+  users {
+    _id
+    name
+    username
+    image
+    email
+    phone
+    role {
+      isInstructor
+      isAdmin
+    }
+    access {
+      register {
+        date
+      }
+      approval {
+        isApproved
+        date
+        by {
+          name
+        }
+      }
+      ban {
+        isBanned
+        date
+        by {
+          name
+        }
+        reason
+      }
+    }
+    membership {
+      isVIP
+      latest {
+        _id
+        note
+        balance {
+          available
+        }
+      }
+    }
+  }
+}
+
+mutation EditUser(
+  $_id: ObjectId!
+  $username: String!
+  $name: String!
+  $phone: String!
+  $image: String
+) {
+  editUser(
+    input: {
+      _id: $_id
+      username: $username
+      name: $name
+      phone: $phone
+      image: $image
+    }
+  ) {
+    _id
+    name
+    username
+  }
+}
+
+mutation EditUserRoleAndAccess(
+  $_id: ObjectId!
+  $updaterId: ObjectId!
+  $role: UserRoleInput!
+  $access: UserAccessInput!
+  $isVIP: Boolean!
+) {
+  editUserRoleAndAccess(
+    _id: $_id
+    updaterId: $updaterId
+    role: $role
+    access: $access
+    isVIP: $isVIP
+  ) {
+    _id
+    name
+  }
+}
+
+mutation UploadProfileImage($_id: ObjectId!, $image: Upload!) {
+  uploadProfileImage(_id: $_id, image: $image)
+}
+
+mutation DeleteProfileImage($_id: ObjectId!) {
+  deleteProfileImage(_id: $_id)
+}
+
+mutation CleanUpUserData($_id: ObjectId!) {
+  cleanUpUserData(_id: $_id)
+}

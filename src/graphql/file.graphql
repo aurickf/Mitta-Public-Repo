@@ -1,0 +1,43 @@
+query ListMembershipBucketObjects($mode: String!) {
+  listMembershipBucketObjects(mode: $mode) {
+    Name
+    KeyCount
+    MaxKeys
+    Prefix
+    IsTruncated
+    Contents {
+      Key
+      FileName
+      Size
+      LastModified
+    }
+  }
+}
+query ListEventBucketObjects($mode: String!) {
+  listEventBucketObjects(mode: $mode) {
+    Name
+    KeyCount
+    MaxKeys
+    Prefix
+    IsTruncated
+    Contents {
+      Key
+      FileName
+      Size
+      LastModified
+    }
+  }
+}
+
+mutation DeleteUnusedImages($prefix: String!, $fileNames: [String!]!) {
+  deleteUnusedImages(input: { prefix: $prefix, fileNames: $fileNames }) {
+    DeleteMarker
+    VersionId
+    # RequestCharged
+    Metadata {
+      httpStatusCode
+      attempts
+      totalRetryDelay
+    }
+  }
+}

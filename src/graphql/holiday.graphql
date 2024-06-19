@@ -1,0 +1,58 @@
+fragment holidayFields on Holiday {
+  _id
+  isEnabled
+  start
+  end
+  title
+}
+
+query Holidays {
+  holidays {
+    ...holidayFields
+  }
+}
+
+query ActiveHolidays {
+  activeHolidays {
+    ...holidayFields
+  }
+}
+
+mutation AddHoliday(
+  $isEnabled: Boolean!
+  $start: DateTime!
+  $end: DateTime
+  $title: String!
+) {
+  addHoliday(
+    input: { isEnabled: $isEnabled, start: $start, end: $end, title: $title }
+  ) {
+    title
+  }
+}
+
+mutation EditHoliday(
+  $_id: ObjectId!
+  $isEnabled: Boolean!
+  $start: DateTime
+  $end: DateTime
+  $title: String
+) {
+  editHoliday(
+    input: {
+      _id: $_id
+      isEnabled: $isEnabled
+      start: $start
+      end: $end
+      title: $title
+    }
+  ) {
+    title
+  }
+}
+
+mutation DeleteHoliday($_id: ObjectId!) {
+  deleteHoliday(_id: $_id) {
+    title
+  }
+}

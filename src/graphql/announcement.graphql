@@ -1,0 +1,85 @@
+fragment announcementFields on Announcement {
+  _id
+  isEnabled
+  isPrivate
+  isPublic
+  start
+  end
+  text
+}
+
+query Announcements {
+  announcements {
+    ...announcementFields
+  }
+}
+
+query ActiveAnnouncements {
+  activeAnnouncements {
+    ...announcementFields
+  }
+}
+
+query ActivePrivateAnnouncements {
+  activePrivateAnnouncements {
+    ...announcementFields
+  }
+}
+
+query ActivePublicAnnouncements {
+  activePublicAnnouncements {
+    ...announcementFields
+  }
+}
+
+mutation AddAnnouncement(
+  $isEnabled: Boolean!
+  $isPrivate: Boolean!
+  $isPublic: Boolean!
+  $start: DateTime!
+  $end: DateTime
+  $text: String!
+) {
+  addAnnouncement(
+    input: {
+      isEnabled: $isEnabled
+      isPrivate: $isPrivate
+      isPublic: $isPublic
+      start: $start
+      end: $end
+      text: $text
+    }
+  ) {
+    text
+  }
+}
+
+mutation EditAnnouncement(
+  $_id: ObjectId!
+  $isEnabled: Boolean
+  $isPrivate: Boolean
+  $isPublic: Boolean
+  $start: DateTime
+  $end: DateTime
+  $text: String
+) {
+  editAnnouncement(
+    input: {
+      _id: $_id
+      isEnabled: $isEnabled
+      isPrivate: $isPrivate
+      isPublic: $isPublic
+      start: $start
+      end: $end
+      text: $text
+    }
+  ) {
+    text
+  }
+}
+
+mutation DeleteAnnouncement($_id: ObjectId!) {
+  deleteAnnouncement(_id: $_id) {
+    text
+  }
+}

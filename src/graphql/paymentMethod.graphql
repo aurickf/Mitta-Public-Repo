@@ -1,0 +1,86 @@
+fragment paymentMethodFields on PaymentMethod {
+  _id
+  isEnabled
+  isEnabledForMembership
+  isEnabledForSpecialEvent
+  requireProof
+  via
+}
+
+query ActivePaymentMethods {
+  activePaymentMethods {
+    ...paymentMethodFields
+  }
+}
+
+query ActivePaymentMethodsSpecialEvent {
+  activePaymentMethodsSpecialEvent {
+    ...paymentMethodFields
+  }
+}
+
+query ActivePaymentMethodsMembership {
+  activePaymentMethodsMembership {
+    ...paymentMethodFields
+  }
+}
+
+query PaymentMethod($_id: ObjectId!) {
+  paymentMethod(_id: $_id) {
+    ...paymentMethodFields
+  }
+}
+
+query PaymentMethods {
+  paymentMethods {
+    ...paymentMethodFields
+  }
+}
+
+mutation AddPaymentMethod(
+  $isEnabled: Boolean!
+  $isEnabledForMembership: Boolean
+  $isEnabledForSpecialEvent: Boolean
+  $requireProof: Boolean
+  $via: String!
+) {
+  addPaymentMethod(
+    input: {
+      isEnabled: $isEnabled
+      isEnabledForMembership: $isEnabledForMembership
+      isEnabledForSpecialEvent: $isEnabledForSpecialEvent
+      requireProof: $requireProof
+      via: $via
+    }
+  ) {
+    via
+  }
+}
+
+mutation EditPaymentMethod(
+  $_id: ObjectId!
+  $isEnabled: Boolean
+  $isEnabledForMembership: Boolean
+  $isEnabledForSpecialEvent: Boolean
+  $requireProof: Boolean
+  $via: String
+) {
+  editPaymentMethod(
+    input: {
+      _id: $_id
+      isEnabled: $isEnabled
+      isEnabledForMembership: $isEnabledForMembership
+      isEnabledForSpecialEvent: $isEnabledForSpecialEvent
+      requireProof: $requireProof
+      via: $via
+    }
+  ) {
+    via
+  }
+}
+
+mutation DeletePaymentMethod($_id: ObjectId!) {
+  deletePaymentMethod(_id: $_id) {
+    via
+  }
+}

@@ -1,0 +1,33 @@
+## Schedule
+
+#### Class Status, Colors, and Icons
+
+export const iconClassNames = "text-xs pi pi-circle-fill pr-1";
+
+- <i className={iconClassNames} style={{ color: "peru" }} /> Scheduled to Run
+
+  Class is expecting to be Confirmed or Cancelled. This indicator should **not** appear on past dates.
+
+- <i className={iconClassNames} style={{ color: "darkviolet" }} /> Confirmed <br />
+
+  Class has been completed and confirmed running
+
+- <i className={iconClassNames} style={{ color: "slategrey" }} /> Cancelled <br />
+
+  Class has been cancelled by admin
+
+- ⭐
+
+  Class is marked for VIP only, other user can view it on search result, but will be denied when tried to book
+
+- 🔇
+
+  Class is not published, and will not appear in search result
+
+#### I already scheduled a class but it's not visible for members to book. What should I check?
+
+1. Check if the class is published, if the class is not published then it not be visible to members.
+
+2. Check if the class is marked as VIP Only, if the class is VIP only, non-VIP members cannot view the class.
+
+export default ({ children }) => <div>{children}</div>;

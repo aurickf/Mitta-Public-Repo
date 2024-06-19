@@ -1,0 +1,29 @@
+## Best Practice
+
+#### Class Creation, Update, and Deletion
+
+- Due to API rate _[limitation][1]_ from Zoom, create your recurring classes to be ended on monthly basis or at maximum a quarter year basis.
+
+- Although not restricted, it is better not to reschedule to a different date.
+
+- You can create and edit a template without an instructor assigned to it, however it is mandatory for a class to have an instructor.
+  Therefore, it is advised to always have at least one instructor assigned to a template for more seamless experience.
+
+- Regarding class deletion, unless created by mistake, it's not advised to delete a class eventhough it's status is _Cancelled_.
+  In the report ( _Tools > Analysis > [Statistic Report][3]_ ), you can get accurate numbers only if you kept cancelled class as it was, instead of removing it from database.
+
+#### Cloud Storage
+
+User avatar and membership's proof of payment is stored on Amazon Cloud Service (AWS).
+User avatar will be kept forever, however proof of payment images will be deleted automatically on agreed time frame.
+These period is adjustable however we cannot keep it in AWS forever as it will accumulate over time and became a Paid Tier.
+
+If you need to keep proof of payment data on undetermined time frame, you can download and store it elsewhere.
+
+Please see _[Data Retention Period][2]_ section on FAQ for reference.
+
+[1]: /faq#Limitation "View Known Limitation section"
+[2]: /faq#Data_Retention_Period "View Data Retention Period section"
+[3]: /tools/report
+
+export default ({ children }) => <div>{children}</div>;

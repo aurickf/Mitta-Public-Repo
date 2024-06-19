@@ -1,0 +1,25 @@
+import Link from "next/link";
+import { Button } from "primereact/button";
+
+export const adminWhatsApp = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP;
+
+## Account and Registration
+
+#### I already complete my profile and submit my membership request, but I'm stuck at membership request page and can not go to the next step.
+
+Each of our membership request needs to be manually approved by our administrator,
+it might take some time for to validate your request, however please feel free to drop us a message.
+
+<Button
+  className="p-button-text p-button-rounded p-button-outlined"
+  label="WhatsApp"
+  aria-label="WhatsApp"
+  icon="pi pi-whatsapp"
+  onClick={() => window.open(`https://wa.me/${adminWhatsApp}`)}
+/>
+
+#### My account is linked using Facebook and wanted to switch to Google login, how can I do it?
+
+You can't. You can only link 1 social account with your email. As an alternative you can login using your email instead.
+
+export default ({ children }) => <div>{children}</div>;

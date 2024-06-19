@@ -1,0 +1,55 @@
+## Booking
+
+#### Booking Status
+
+There are 4 possible booking status values
+
+- Scheduled
+
+  Booking is active and expecting to be changed and to either confirmed or cancelled.
+
+- Confirmed
+
+  Booking has been accounted against its membership balance.
+
+- Booking Cancelled
+
+  Booking is cancelled by user, or by admin on behalf of user.
+
+- Class Cancelled
+
+  Booking is cancelled due to class cancellation, not willingness of the user.
+
+#### A member decided to go-show and attended a class without prior booking. What should be done?
+
+Due to booking time limit policy the member can no longer book the class after it started.
+Assuming he/she already have an account and active membership,
+
+1.  Go to [Manage > User][1], and book on behalf of the user
+2.  Ask the instructor to confirm their attendance <br/>
+    or if they already did, **_you need to re-confirm_** the class to change this member booking status
+    into **_Confirmed_** and charged correctly to the membership.
+
+#### I need to cancel a booking, how do I do it?
+
+1. Go to [Manage > Booking][2], click on the booking document you with to cancel
+2. On the bottom right popup bar window, click Cancel button
+
+[1]: /manage/user
+[2]: /manage/booking
+
+#### How do I interpret a booking code?
+
+A booking code consist of 9-digits of number with format _YYMMDDNNNN_.
+
+First 6 digit represent it's class schedule and last 3 digit is a counter
+
+- YY - 2 digit year
+
+- MM - 2 digit month
+
+- DD - 2 digit date
+
+- NNN - counter
+
+export default ({ children }) => <div>{children}</div>;

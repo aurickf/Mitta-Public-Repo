@@ -1,0 +1,56 @@
+{
+  "id": "c4f536c0-17c7-45c1-bed3-78a32fa750e6",
+  "version": "2.0",
+  "name": "Kalyana Membership App",
+  "url": "http://localhost:3000",
+  "tests": [{
+    "id": "059a8ff1-08cb-4e3c-aa46-5a494aa9570f",
+    "name": "Login with Google",
+    "commands": [{
+      "id": "7376aed1-911e-4a07-bbc1-9a8da36e9e60",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ab39453c-2f49-449b-8e37-baf1f61393db",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginWithGoogle",
+      "targets": [],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "newWindow",
+      "windowTimeout": 10000
+    }, {
+      "id": "f1500e6b-eca6-4414-9ba7-3d12821e8ee5",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${newWindow}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9078ec3-4c8b-45cc-a208-65a4f1bf1d5c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.JDAKTe:nth-child(1) > .lCoei",
+      "targets": [
+        ["css=.JDAKTe:nth-child(1) > .lCoei", "css:finder"],
+        ["xpath=//div[@id='view_container']/div/div/div[2]/div/div/div/form/span/section/div/div/div/div/ul/li/div", "xpath:idRelative"],
+        ["xpath=//li/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4a52d4a0-cad8-4beb-b3d7-3b405e648308",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["059a8ff1-08cb-4e3c-aa46-5a494aa9570f"]
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}

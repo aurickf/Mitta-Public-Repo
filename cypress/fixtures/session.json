@@ -1,0 +1,23 @@
+{
+  "user": {
+    "name": "Aurick Frederick",
+    "email": "aurickf@gmail.com",
+    "image": "https://kalyana-yoga-pdt.s3.ap-southeast-3.amazonaws.com/avatar/630388d8ed4f5ca4d89535b6.png",
+    "_id": "630388d8ed4f5ca4d89535b6",
+    "username": "aurickf",
+    "phone": "081287252852",
+    "role": { "isInstructor": true, "isAdmin": true },
+    "access": {
+      "approval": {
+        "isApproved": true,
+        "date": "2022-09-02T12:51:45.629Z",
+        "by": "630388d8ed4f5ca4d89535b6"
+      },
+      "ban": { "isBanned": false, "date": null, "reason": null },
+      "register": { "date": "2022-08-23T04:02:55.500Z" },
+      "lastLoggedIn": "2022-12-14T05:21:40.083Z"
+    },
+    "membership": { "isVIP": true, "latest": "639067b1c919146c07d34a06" }
+  },
+  "expires": "2023-01-13T05:21:40.157Z"
+}

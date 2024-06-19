@@ -1,0 +1,68 @@
+fragment membershipPackageFields on MembershipPackage {
+  _id
+  isEnabled
+  name
+  additional
+  price
+  validity
+}
+
+query ActiveMembershipPackage {
+  activeMembershipPackages {
+    ...membershipPackageFields
+  }
+}
+
+query MembershipPackages {
+  membershipPackages {
+    ...membershipPackageFields
+  }
+}
+
+mutation AddMembershipPackage(
+  $isEnabled: Boolean!
+  $name: String!
+  $additional: Int!
+  $price: Int!
+  $validity: Int!
+) {
+  addMembershipPackage(
+    input: {
+      isEnabled: $isEnabled
+      name: $name
+      additional: $additional
+      price: $price
+      validity: $validity
+    }
+  ) {
+    name
+  }
+}
+
+mutation EditMembershipPackage(
+  $_id: ObjectId!
+  $isEnabled: Boolean!
+  $name: String
+  $additional: Int
+  $price: Int
+  $validity: Int
+) {
+  editMembershipPackage(
+    input: {
+      _id: $_id
+      isEnabled: $isEnabled
+      name: $name
+      additional: $additional
+      price: $price
+      validity: $validity
+    }
+  ) {
+    name
+  }
+}
+
+mutation DeleteMembershipPackage($_id: ObjectId!) {
+  deleteMembershipPackage(_id: $_id) {
+    name
+  }
+}

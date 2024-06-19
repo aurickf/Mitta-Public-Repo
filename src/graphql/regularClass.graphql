@@ -1,0 +1,296 @@
+query RegularClass($_id: ObjectId!) {
+  regularClass(_id: $_id) {
+    __typename
+    details {
+      title
+      description
+      level {
+        _id
+      }
+      tags
+    }
+    instructors {
+      _id
+      name
+      image
+    }
+    schedule {
+      date
+      duration
+      isAllDay
+      rString
+    }
+    online {
+      booked {
+        _id
+        bookingCode
+        user {
+          name
+          image
+        }
+        status {
+          value
+        }
+      }
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    offline {
+      booked {
+        _id
+        bookingCode
+        user {
+          name
+          image
+        }
+        status {
+          value
+        }
+      }
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    status {
+      isRunning
+      isPublished
+      isVIPOnly
+    }
+    zoom {
+      meetingId
+      password
+      joinUrl
+    }
+  }
+}
+
+query RegularClasses {
+  regularClasses {
+    _id
+    instructors {
+      _id
+      name
+      image
+    }
+    details {
+      title
+      description
+      level {
+        _id
+        isEnabled
+        code
+        description
+      }
+      tags
+    }
+    schedule {
+      date
+      duration
+    }
+    status {
+      isRunning
+      isPublished
+      isVIPOnly
+    }
+    online {
+      capacity
+      booked {
+        _id
+        bookingCode
+      }
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    offline {
+      capacity
+      booked {
+        _id
+        bookingCode
+      }
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+  }
+}
+
+query RegularClassesByInstructorsUsername(
+  $username: String!
+  $viewedDate: DateTime!
+) {
+  regularClassesByInstructorsUsername(
+    username: $username
+    viewedDate: $viewedDate
+  ) {
+    __typename
+    _id
+    instructors {
+      name
+      image
+    }
+    details {
+      title
+    }
+    schedule {
+      date
+      duration
+      isAllDay
+    }
+    online {
+      booked {
+        _id
+        user {
+          name
+          image
+        }
+      }
+    }
+    offline {
+      booked {
+        _id
+        user {
+          name
+          image
+        }
+      }
+    }
+    status {
+      isRunning
+      isPublished
+      isVIPOnly
+    }
+  }
+}
+
+query RegularClassFormQuery {
+  classTemplates {
+    _id
+    details {
+      title
+    }
+  }
+  levels {
+    _id
+    code
+    description
+  }
+  instructors {
+    _id
+    name
+    image
+  }
+}
+
+mutation AddRegularClass(
+  $instructors: [ObjectId!]!
+  $details: ClassDetailsInput!
+  $online: ClassCapacityInput!
+  $offline: ClassCapacityInput!
+  $schedule: ClassScheduleInput!
+  $status: ClassStatusInput!
+  $createZoomMeeting: Boolean
+) {
+  addRegularClass(
+    input: {
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+      createZoomMeeting: $createZoomMeeting
+    }
+  )
+}
+
+mutation AddZoomMeetingRegularClass($_id: ObjectId!) {
+  addZoomMeetingRegularClass(_id: $_id) {
+    _id
+  }
+}
+
+mutation EditSingleRegularClass(
+  $_id: ObjectId!
+  $instructors: [ObjectId!]!
+  $details: ClassDetailsInput!
+  $online: ClassCapacityInput!
+  $offline: ClassCapacityInput!
+  $schedule: ClassScheduleInput!
+  $status: ClassStatusInput!
+) {
+  editSingleRegularClass(
+    input: {
+      _id: $_id
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+    }
+  )
+}
+
+mutation EditRecurrenceRegularClass(
+  $_id: ObjectId!
+  $instructors: [ObjectId!]!
+  $details: ClassDetailsInput!
+  $online: ClassCapacityInput!
+  $offline: ClassCapacityInput!
+  $schedule: ClassScheduleInput!
+  $status: ClassStatusInput!
+) {
+  editRecurrenceRegularClass(
+    input: {
+      _id: $_id
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+    }
+  )
+}
+mutation EditFollowingRegularClass(
+  $input: RegularClassInput!
+  $originalDate: DateTime!
+) {
+  editFollowingRegularClass(input: $input, originalDate: $originalDate)
+}
+
+mutation DeleteSingleRegularClass($_id: ObjectId!, $updatedBy: ObjectId!) {
+  deleteSingleRegularClass(_id: $_id, updatedBy: $updatedBy)
+}
+
+mutation DeleteRecurrenceRegularClass($_id: ObjectId!, $updatedBy: ObjectId!) {
+  deleteRecurrenceRegularClass(_id: $_id, updatedBy: $updatedBy)
+}
+
+mutation DeleteFollowingRegularClass(
+  $_id: ObjectId!
+  $updatedBy: ObjectId!
+  $date: DateTime!
+) {
+  deleteFollowingRegularClass(_id: $_id, updatedBy: $updatedBy, date: $date)
+}
+
+mutation UpdateClassAttendance(
+  $_id: ObjectId!
+  $updatedBy: ObjectId!
+  $action: String!
+  $reason: String
+) {
+  updateClassAttendance(
+    _id: $_id
+    updatedBy: $updatedBy
+    action: $action
+    reason: $reason
+  ) {
+    _id
+  }
+}

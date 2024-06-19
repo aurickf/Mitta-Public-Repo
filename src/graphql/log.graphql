@@ -1,0 +1,11 @@
+query GetAllLogs {
+  getAllLogs {
+    user {
+      name
+    }
+    category
+    subCategory
+    message
+    createdAt
+  }
+}

@@ -1,0 +1,167 @@
+query ClassTemplates {
+  classTemplates {
+    __typename
+    _id
+    instructors {
+      _id
+      name
+      image
+    }
+    details {
+      title
+      description
+      level {
+        _id
+        description
+      }
+      tags
+    }
+    online {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    offline {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    schedule {
+      day
+      startTime
+      duration
+    }
+  }
+}
+
+query ClassTemplate($_id: ObjectId!) {
+  classTemplate(_id: $_id) {
+    __typename
+    _id
+    instructors {
+      _id
+      name
+      image
+    }
+    details {
+      title
+      description
+      level {
+        _id
+        description
+      }
+      tags
+    }
+    online {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    offline {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    schedule {
+      day
+      startTime
+      duration
+    }
+  }
+}
+
+query ClassTemplatePriceList($title: String!) {
+  classTemplatePriceList(title: $title) {
+    __typename
+    _id
+    instructors {
+      _id
+      name
+      image
+    }
+    details {
+      title
+      description
+      level {
+        _id
+        description
+      }
+      tags
+    }
+    online {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    offline {
+      capacity
+      bookingTimeLimit
+      cancelTimeLimit
+      cost
+    }
+    schedule {
+      day
+      startTime
+      duration
+    }
+  }
+}
+
+mutation AddTemplate(
+  $instructors: [ObjectId]
+  $details: ClassTemplateDetailsInput!
+  $online: ClassTemplateCapacityInput!
+  $offline: ClassTemplateCapacityInput!
+  $schedule: ClassTemplateScheduleInput!
+) {
+  addTemplate(
+    input: {
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+    }
+  ) {
+    details {
+      title
+    }
+  }
+}
+
+mutation EditTemplate(
+  $_id: ObjectId!
+  $instructors: [ObjectId]
+  $details: ClassTemplateDetailsInput!
+  $online: ClassTemplateCapacityInput!
+  $offline: ClassTemplateCapacityInput!
+  $schedule: ClassTemplateScheduleInput!
+) {
+  editTemplate(
+    input: {
+      _id: $_id
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+    }
+  ) {
+    details {
+      title
+    }
+  }
+}
+
+mutation DeleteTemplate($_id: ObjectId!) {
+  deleteTemplate(_id: $_id) {
+    details {
+      title
+    }
+  }
+}

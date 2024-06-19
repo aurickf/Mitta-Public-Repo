@@ -1,0 +1,119 @@
+query EventBookingCards {
+  eventBookingCards {
+    _id
+  }
+}
+
+query EventBookingCard($_id: ObjectId!) {
+  eventBookingCard(_id: $_id) {
+    _id
+    bookingCode
+    user {
+      name
+    }
+    seat
+    classType
+    participants
+    payment {
+      date
+      amount
+      method
+      image
+    }
+    status {
+      value
+      reason
+      lastUpdateOn
+      updatedBy {
+        name
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+query SelectedEventBookingCards($_id: ObjectId!) {
+  selectedEventBookingCards(_id: $_id) {
+    _id
+    bookingCode
+    user {
+      name
+    }
+    seat
+    classType
+    participants
+    payment {
+      date
+      amount
+      method
+      image
+    }
+    status {
+      value
+      reason
+      lastUpdateOn
+      updatedBy {
+        name
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+mutation AddEventBookingCard(
+  $user: ObjectId!
+  $booker: ObjectId!
+  $event: ObjectId!
+  $classType: String!
+  $seat: Int!
+  $participants: [String!]!
+  $payment: EventPaymentInput!
+  $status: EventBookingCardStatusInput!
+  $image: Upload
+) {
+  addEventBookingCard(
+    input: {
+      user: $user
+      booker: $booker
+      event: $event
+      classType: $classType
+      seat: $seat
+      participants: $participants
+      payment: $payment
+      status: $status
+      image: $image
+    }
+  ) {
+    _id
+    bookingCode
+  }
+}
+
+mutation UpdateEventBookingRequestStatus(
+  $_id: ObjectId!
+  $status: EventBookingCardStatusInput!
+) {
+  updateEventBookingRequestStatus(_id: $_id, status: $status) {
+    _id
+  }
+}
+
+mutation DeleteEventBookingPaymentImage($_id: ObjectId!) {
+  deleteEventBookingPaymentImage(_id: $_id) {
+    _id
+  }
+}
+
+mutation UpdateSpecialEventBookingParticipants(
+  $_id: ObjectId!
+  $participants: [String!]!
+) {
+  updateSpecialEventBookingParticipants(
+    _id: $_id
+    participants: $participants
+  ) {
+    _id
+  }
+}

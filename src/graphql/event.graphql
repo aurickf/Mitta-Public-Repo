@@ -1,0 +1,196 @@
+fragment eventInstructors on SpecialEvent {
+  instructors {
+    name
+  }
+}
+
+fragment eventDetails on SpecialEvent {
+  details {
+    title
+    description
+    tags
+  }
+}
+
+fragment eventSchedule on SpecialEvent {
+  schedule {
+    date
+    duration
+    rString
+  }
+}
+
+fragment eventStatus on SpecialEvent {
+  status {
+    isRunning
+    isPublished
+    isVIPOnly
+  }
+}
+
+fragment eventCapacity on EventCapacity {
+  booked {
+    _id
+  }
+  confirmed {
+    _id
+  }
+  rejected {
+    _id
+  }
+  capacity
+  availability
+  bookingTimeLimit
+  cost
+  bookedSeat
+  confirmedSeat
+  rejectedSeat
+}
+
+fragment eventZoom on SpecialEvent {
+  zoom {
+    meetingId
+    password
+    joinUrl
+  }
+}
+
+query SpecialEvents {
+  specialEvents {
+    _id
+    ...eventDetails
+    ...eventInstructors
+    ...eventSchedule
+    online {
+      ...eventCapacity
+    }
+    offline {
+      ...eventCapacity
+    }
+    ...eventStatus
+    ...eventZoom
+  }
+}
+
+query SpecialEvent($_id: ObjectId!) {
+  specialEvent(_id: $_id) {
+    __typename
+    _id
+    ...eventDetails
+    ...eventInstructors
+    ...eventSchedule
+    online {
+      ...eventCapacity
+    }
+    offline {
+      ...eventCapacity
+    }
+    ...eventStatus
+    ...eventZoom
+  }
+}
+
+mutation AddZoomMeetingSpecialEvent($_id: ObjectId!) {
+  addZoomMeetingSpecialEvent(_id: $_id) {
+    _id
+  }
+}
+
+mutation AddSpecialEvent(
+  $instructors: [String!]!
+  $details: EventDetailsInput!
+  $online: EventCapacityInput!
+  $offline: EventCapacityInput!
+  $schedule: EventScheduleInput!
+  $status: EventStatusInput!
+  $createZoomMeeting: Boolean
+) {
+  addSpecialEvent(
+    input: {
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+      createZoomMeeting: $createZoomMeeting
+    }
+  )
+}
+
+mutation EditSingleSpecialEvent(
+  $_id: ObjectId!
+  $instructors: [String!]!
+  $details: EventDetailsInput!
+  $online: EventCapacityInput!
+  $offline: EventCapacityInput!
+  $schedule: EventScheduleInput!
+  $status: EventStatusInput!
+) {
+  editSingleSpecialEvent(
+    input: {
+      _id: $_id
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+    }
+  )
+}
+
+mutation EditRecurrenceSpecialEvent(
+  $_id: ObjectId!
+  $instructors: [String!]!
+  $details: EventDetailsInput!
+  $online: EventCapacityInput!
+  $offline: EventCapacityInput!
+  $schedule: EventScheduleInput!
+  $status: EventStatusInput!
+) {
+  editRecurrenceSpecialEvent(
+    input: {
+      _id: $_id
+      instructors: $instructors
+      details: $details
+      online: $online
+      offline: $offline
+      schedule: $schedule
+      status: $status
+    }
+  )
+}
+mutation EditFollowingSpecialEvent(
+  $input: SpecialEventInput!
+  $originalDate: DateTime!
+) {
+  editFollowingSpecialEvent(input: $input, originalDate: $originalDate)
+}
+
+mutation DeleteSingleSpecialEvent($_id: ObjectId!, $updatedBy: ObjectId!) {
+  deleteSingleSpecialEvent(_id: $_id, updatedBy: $updatedBy)
+}
+
+mutation DeleteRecurrenceSpecialEvent($_id: ObjectId!, $updatedBy: ObjectId!) {
+  deleteRecurrenceSpecialEvent(_id: $_id, updatedBy: $updatedBy)
+}
+
+mutation DeleteFollowingSpecialEvent(
+  $_id: ObjectId!
+  $date: DateTime!
+  $updatedBy: ObjectId!
+) {
+  deleteFollowingSpecialEvent(_id: $_id, date: $date, updatedBy: $updatedBy)
+}
+
+mutation UpdateSpecialEventStatus($_id: ObjectId!, $isRunning: Boolean!) {
+  updateSpecialEventStatus(_id: $_id, isRunning: $isRunning) {
+    _id
+  }
+}
+mutation DeleteSpecialEventStatus($_id: ObjectId!) {
+  deleteSpecialEventStatus(_id: $_id) {
+    _id
+  }
+}

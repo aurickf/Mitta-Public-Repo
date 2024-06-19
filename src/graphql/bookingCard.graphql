@@ -1,0 +1,109 @@
+query BookingCards {
+  bookingCards {
+    _id
+    bookingCode
+    user {
+      name
+      image
+    }
+    booker {
+      name
+    }
+    regularClass {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+      status {
+        isRunning
+        isPublished
+        isVIPOnly
+      }
+    }
+    status {
+      value
+      lastUpdateOn
+      updatedBy {
+        name
+      }
+    }
+  }
+}
+
+query ActiveBookings($_id: ObjectId!) {
+  activeBookings(_id: $_id) {
+    _id
+    bookingCode
+    regularClass {
+      details {
+        title
+      }
+      schedule {
+        date
+        duration
+      }
+    }
+    status {
+      value
+    }
+  }
+}
+
+# _id refers to user id, not bookingCard _id
+query BookingCardsUser($_id: ObjectId!) {
+  bookingCardsUser(_id: $_id) {
+    _id
+    bookingCode
+    regularClass {
+      details {
+        title
+      }
+      schedule {
+        date
+      }
+    }
+    status {
+      value
+      lastUpdateOn
+      updatedBy {
+        name
+      }
+    }
+  }
+}
+
+mutation AddBookingCard(
+  $user: ObjectId!
+  $booker: ObjectId!
+  $regularClass: ObjectId!
+  $classType: String!
+  $seat: Int!
+  $updatedBy: ObjectId!
+) {
+  addBookingCard(
+    input: {
+      user: $user
+      booker: $booker
+      regularClass: $regularClass
+      classType: $classType
+      seat: $seat
+      status: { value: "Scheduled", updatedBy: $updatedBy }
+    }
+  ) {
+    _id
+    bookingCode
+  }
+}
+
+mutation CancelBookingCard($_id: ObjectId!, $updatedBy: ObjectId!) {
+  cancelBookingCard(
+    _id: $_id
+    updatedBy: $updatedBy
+    bookingStatus: "Booking Cancelled"
+  ) {
+    _id
+    bookingCode
+  }
+}

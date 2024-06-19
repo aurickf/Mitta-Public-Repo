@@ -1,0 +1,182 @@
+fragment balanceFields on Membership {
+  balance {
+    available
+    additional
+    transferIn
+    transferOut
+    validUntil
+  }
+}
+
+fragment paymentFields on Membership {
+  payment {
+    amount
+    method
+    date
+    url
+  }
+}
+
+query Memberships {
+  memberships {
+    _id
+    note
+    user {
+      name
+      image
+      email
+      username
+    }
+    booked {
+      _id
+      bookingCode
+      cost
+      createdAt
+    }
+    confirmed {
+      _id
+      bookingCode
+      cost
+      createdAt
+    }
+    cancelled {
+      _id
+      bookingCode
+      cost
+      createdAt
+    }
+    ...balanceFields
+    ...paymentFields
+    verified {
+      isVerified
+      reason
+      by {
+        name
+      }
+      date
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+query MembershipsByUser($_id: ObjectId!) {
+  membershipsByUser(_id: $_id) {
+    _id
+    note
+    booked {
+      _id
+    }
+    confirmed {
+      _id
+    }
+    cancelled {
+      _id
+    }
+    balance {
+      additional
+      validUntil
+    }
+    ...paymentFields
+    verified {
+      isVerified
+      reason
+      date
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+query Membership($_id: ObjectId!) {
+  membership(_id: $_id) {
+    _id
+    user {
+      name
+      image
+    }
+    note
+    booked {
+      _id
+    }
+    confirmed {
+      _id
+    }
+    cancelled {
+      _id
+    }
+    ...balanceFields
+    ...paymentFields
+    verified {
+      isVerified
+      reason
+      by {
+        name
+      }
+      date
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+mutation MarkThisMembershipAsInvalid($_id: ObjectId!, $updatedBy: ObjectId!) {
+  markThisMembershipAsInvalid(_id: $_id, updatedBy: $updatedBy) {
+    _id
+  }
+}
+
+mutation MarkThisAndFollowingMembershipAsInvalid(
+  $_id: ObjectId!
+  $updatedBy: ObjectId!
+) {
+  markThisAndFollowingMembershipAsInvalid(_id: $_id, updatedBy: $updatedBy) {
+    _id
+  }
+}
+
+mutation AddMembership(
+  $user: ObjectId!
+  $membershipPackageId: ObjectId!
+  $note: String!
+  $payment: MembershipPaymentInput!
+  $image: Upload
+) {
+  addMembership(
+    user: $user
+    membershipPackageId: $membershipPackageId
+    note: $note
+    payment: $payment
+    image: $image
+  ) {
+    _id
+  }
+}
+
+mutation EditMembership(
+  $_id: ObjectId!
+  $balance: MembershipBalanceInput!
+  $payment: MembershipPaymentInput!
+  $verified: MembershipVerifiedInput!
+) {
+  editMembership(
+    _id: $_id
+    balance: $balance
+    payment: $payment
+    verified: $verified
+  ) {
+    _id
+  }
+}
+
+mutation DeleteMembership($_id: ObjectId!) {
+  deleteMembership(_id: $_id) {
+    _id
+  }
+}
+
+mutation DeleteProofOfPayment($_id: ObjectId!) {
+  deleteProofOfPayment(_id: $_id) {
+    _id
+  }
+}

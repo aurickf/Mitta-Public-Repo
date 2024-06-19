@@ -1,0 +1,75 @@
+query OverallBookingReport {
+  overallBookingReport {
+    _id {
+      classType
+      status
+    }
+    count
+  }
+}
+
+query WeeklyBookingReport($bookingStatus: String!, $timeFrame: String!) {
+  weeklyBookingReport(bookingStatus: $bookingStatus, timeFrame: $timeFrame) {
+    _id {
+      classType
+      status
+      week
+    }
+    count
+    totalCost
+  }
+}
+
+query TopUserReport($bookingStatus: String!, $timeFrame: String!) {
+  topUserReport(bookingStatus: $bookingStatus, timeFrame: $timeFrame) {
+    _id {
+      user
+    }
+    totalCost
+  }
+}
+
+query TopUserMembershipReport($timeFrame: String!) {
+  topUserMembershipReport(timeFrame: $timeFrame) {
+    _id {
+      user
+    }
+    totalCost
+  }
+}
+
+query TopInstructorReport($bookingStatus: String!, $timeFrame: String!) {
+  topInstructorReport(bookingStatus: $bookingStatus, timeFrame: $timeFrame) {
+    _id {
+      instructor
+    }
+    totalCost
+  }
+}
+
+query InstructorPerformanceReport(
+  $instructorId: ObjectId!
+  $timeFrame: String!
+) {
+  instructorPerformanceReport(
+    instructorId: $instructorId
+    timeFrame: $timeFrame
+  ) {
+    _id {
+      instructor
+      status
+    }
+    count
+  }
+}
+
+query SpecialClassReport($timeFrame: String!) {
+  specialClassReport(timeFrame: $timeFrame) {
+    _id {
+      classType
+      week
+    }
+    totalSeat
+    count
+  }
+}

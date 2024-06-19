@@ -1,0 +1,30 @@
+query GetMessagesForUser($_id: ObjectId!) {
+  getUnreadNumberForUser(_id: $_id)
+  getMessagesForUser(_id: $_id) {
+    _id
+    isRead
+    title
+    message
+    createdAt
+    updatedAt
+  }
+}
+
+query GetMessage($_id: ObjectId!) {
+  getMessage(_id: $_id) {
+    _id
+    isRead
+    title
+    message
+    createdAt
+    updatedAt
+  }
+}
+
+mutation MarkAllMessagesAsReadForUser($_id: ObjectId!) {
+  markAllMessagesAsReadForUser(_id: $_id)
+}
+
+mutation DeleteAllReadMessagesForUser($_id: ObjectId!) {
+  deleteAllReadMessagesForUser(_id: $_id)
+}

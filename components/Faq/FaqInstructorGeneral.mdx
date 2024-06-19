@@ -1,0 +1,90 @@
+import MyClass from "@/components/RegularClass/MyClass";
+import { dummyClass, dummyClass2, dummyClass3 } from "./data.tsx";
+import { Tag } from "primereact/tag";
+import { Divider } from "primereact/divider";
+
+## General Question
+
+#### What is the expected flow on my teaching routine?
+
+1. Check on your upcoming schedule
+
+2. Teach as usual
+
+3. After you completed your class, check on participant name
+
+4. If there's a member attended the class but not on the list, please notify admin, otherwise confirm your attendance
+
+#### What are the elements in 'My Teaching Schedule' section?
+
+<div className="w-full mx-auto ">
+  <div className="flex flex-wrap justify-around gap-3 py-3 surface-100 rounded-md">
+    <MyClass value={dummyClass} />
+    <MyClass value={dummyClass2} />
+    <MyClass value={dummyClass3} />
+  </div>
+  <div className="text-center text-xs my-2">
+    _You can found this info on "My Teaching Schedule"_
+  </div>
+</div>
+
+##### Tag
+
+<div className="flex gap-2 ml-2">
+  <Tag severity="warning">Public</Tag>
+  <div>is open for all member to book.</div>
+</div>
+<br />
+<div className="flex gap-2 ml-2">
+  <Tag severity="warning">VIP</Tag>
+  <div>class is open for only VIP member.</div>
+</div>
+
+##### Icons
+
+🌏 Online - n
+
+> n is amount of members booked for online class
+
+🏠 Offline - n
+
+> n is amount of members booked for offline class
+
+👥 n
+
+> n is total amount of members joined your class, only shown on confirmed class
+
+##### Class Status
+
+These are class statuses to be displayed on "My Teaching Schedule" section
+
+- **Scheduled to run**
+
+  Class with this status is expected to run as scheduled
+
+- **Confirmed**
+
+  Class with this status means you alread confirmed your attendance
+
+- **Cancelled**
+
+  Class with this status has been cancelled by admin and you no longer expected to teach this class
+
+#### I do not see my class anywhere, what should I do?
+
+If you do not see your class in home page and in your attendance calendar, your class has not been created or published yet. Please let contact your admin.
+
+#### My class is about to start, but I cannot confirm my attendance in the system
+
+Attendance confirmation can only be done **after** your class scheduled to end.
+
+#### How to reschedule or cancel my upcoming class?
+
+You can cancel your class in the attendance page. Please also fill the cancellation reason so your admin knows why you cancelled.
+Cancellation reason will not be sent to participant, only admin.
+
+#### How to reschedule my upcoming class?
+
+Reschedule can only be done by admin.
+
+export default ({ children }) => <div>{children}</div>;

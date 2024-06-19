@@ -1,0 +1,59 @@
+fragment levelFields on Level {
+  _id
+  isEnabled
+  code
+  description
+}
+
+query ActiveLevels {
+  activeLevels {
+    ...levelFields
+  }
+}
+
+query Levels {
+  levels {
+    ...levelFields
+  }
+}
+
+query Level($_id: ObjectId!) {
+  level(_id: $_id) {
+    ...levelFields
+  }
+}
+
+mutation AddLevel($isEnabled: Boolean!, $code: String!, $description: String!) {
+  addLevel(
+    input: { isEnabled: $isEnabled, code: $code, description: $description }
+  ) {
+    code
+    description
+  }
+}
+
+mutation EditLevel(
+  $_id: ObjectId!
+  $isEnabled: Boolean!
+  $code: String
+  $description: String
+) {
+  editLevel(
+    input: {
+      _id: $_id
+      isEnabled: $isEnabled
+      code: $code
+      description: $description
+    }
+  ) {
+    code
+    description
+  }
+}
+
+mutation DeleteLevel($_id: ObjectId!) {
+  deleteLevel(_id: $_id) {
+    code
+    description
+  }
+}

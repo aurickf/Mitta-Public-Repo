@@ -1,0 +1,36 @@
+## Membership
+
+#### A membership request is approved by mistake, what should be done?
+
+These steps need to be taken in correct order
+
+1. Ask the member to submit the correct request
+
+2. Verify the correct request
+
+   Change the status of the correct request to be verified
+
+3. Deverify the incorrect request
+
+   Change the status of incorrect request to be pending
+
+#### What happened when I deverified a membership?
+
+The purpose of deverifying is to cancel a mistaken membership request approval.
+
+When a membership is verified, member's available balance is added accordingly depends on the package of their purchase.
+Therefore, upon deverified, member's current balance will be deducted respectively.
+
+#### What are the restriction on deverifying a membership?
+
+On verifying a membership, it is automatically updated into the latest membership of its user.
+All membership information such as available balance, validity date, booking information, etc., is stored in latest membership record.
+Therefore the application restricting latest membership to be deverified.
+
+To make this invalid membership **not to be the latest**, simply verify a new valid request, this new request upon approval will then be the latest membership.
+
+#### I kept a link to a proof of payment image, however later when I tried to download the link failed.
+
+Proof of payment images is protected so only people with the right access can open. Download link is automatically expires and became unusable after 15 minutes.
+
+export default ({ children }) => <div>{children}</div>;
