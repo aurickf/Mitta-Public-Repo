@@ -1,3 +1,7 @@
+## Important Notice
+
+This code made to public for code review purpose only, therefore some code on this repo has been removed and will not work properly.
+
 ## Project Recap
 
 This repository stores Kalyana's Membership application.
